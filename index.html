@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Samsara: 音乐疗愈系统</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+    <canvas id="art-canvas"></canvas>
+
+    <div id="ui-layer">
+        <header>
+            <h1>SAMSARA THERAPY</h1>
+            <p>2026 · 沉浸式声波疗愈</p>
+        </header>
+
+        <div id="content-area">
+            <p id="poetic-text">输入当下的情绪，生成专属疗愈频段...</p>
+        </div>
+
+        <div id="input-area">
+            <input type="text" id="user-input" placeholder="如: 焦虑, 失眠, 渴望平静..." autocomplete="off">
+            <button id="generate-btn">开始疗愈 (<span id="count-display">3</span>)</button>
+        </div>
+    </div>
+
+    <!-- 付费弹窗 (默认隐藏) -->
+    <div id="pay-modal" class="hidden">
+        <div class="modal-content">
+            <h2>解锁无限疗愈</h2>
+            <p class="desc">试用次数已耗尽。请支付 <span>¥9.9</span> 获取永久使用权。</p>
+            
+            <div class="qr-container">
+                <img src="pay_code.jpg" alt="微信扫码支付">
+            </div>
+            
+            <div class="instruction">
+                <p>1. 截图/长按识别二维码支付</p>
+                <p>2. 添加导师微信: <span class="highlight">Shensi-ST</span></p>
+                <p>3. 发送截图，获取激活码</p>
+            </div>
+
+            <div class="verify-area">
+                <input type="text" id="activation-code" placeholder="在此输入激活码">
+                <button id="verify-btn">激活</button>
+            </div>
+            <p id="error-msg"></p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js');
+        }
+    </script>
+</body>
